@@ -1,7 +1,11 @@
 package nextstep.subway.domain;
 
+import nextstep.subway.applicaion.dto.LineUpdateRequest;
+import org.springframework.util.CollectionUtils;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -67,14 +71,45 @@ public class Line {
         return section;
     }
 
+    public Station removeStation(Station station) {
+        Station lastStation = CollectionUtils.lastElement(getStations());
+        if (!lastStation.equals(station)) {
+            throw new IllegalArgumentException();
+        }
+        return station;
+    }
+
     public List<Section> getSections() {
         return sections;
     }
 
     public List<Station> getStations() {
-        return getSections().stream().flatMap(
-                section -> Stream.of(section.getUpStation(), section.getDownStation())
-        ).distinct().collect(Collectors.toList());
+        if (getSections().isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return getSections()
+                .stream()
+                .flatMap(
+                        section -> Stream.of(section.getUpStation(), section.getDownStation())
+                ).distinct().collect(Collectors.toList());
+    }
+
+    public void update(LineUpdateRequest request) {
+        updateName(request.getName());
+        updateColor(request.getColor());
+    }
+
+    private void updateName(String name) {
+        if (name != null) {
+            this.name = name;
+        }
+    }
+
+    private void updateColor(String color) {
+        if (color != null) {
+            this.color = color;
+        }
     }
 
 }
