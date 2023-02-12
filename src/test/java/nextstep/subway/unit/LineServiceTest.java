@@ -4,7 +4,6 @@ import nextstep.subway.applicaion.LineService;
 import nextstep.subway.applicaion.dto.SectionRequest;
 import nextstep.subway.domain.LineRepository;
 import nextstep.subway.domain.StationRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +15,10 @@ import static nextstep.subway.unit.fixture.StationFixture.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.assertj.core.api.Assertions.*;
 
+/**
+ * Mock을 사용하지 않은 노선 서비스 테스트
+ * {@link LineService}
+ */
 @SpringBootTest
 @Transactional
 public class LineServiceTest {
@@ -27,13 +30,8 @@ public class LineServiceTest {
     @Autowired
     private LineService lineService;
 
-    @BeforeEach
-    void setUp() {
-        // 지하철_3호선 = 지하철_노선_및_구간_동시_생성(지하철_3호선_연신내_충무로);
-    }
-
     /**
-     * Given repository를 통해 지하철역, 노선을 등록한다.
+     * Given 지하철역과 노선을 등록한다.
      * When 노선(Line) 서비스를 통해 구간 등록을 호출한다.
      * Then 노선(Line) 서비스를 통해 조회 시, 등록된 구간을 확인할 수 있다.
      */

@@ -21,6 +21,10 @@ public class LineTestHelper {
         return new Line(노선_픽처.이름(), 노선_픽처.색상());
     }
 
+    public static Line 지하철_노선_생성(Long 아이디, LineFixture 노선_픽처) {
+        return new Line(아이디, 노선_픽처.이름(), 노선_픽처.색상());
+    }
+
     public static Section 지하철_노선에_구간_추가(Line 노선, SectionFixture 구간_픽처) {
         var 구간 = 구간_생성(노선, 구간_픽처);
         노선.addSection(
@@ -40,6 +44,10 @@ public class LineTestHelper {
 
     public static Station 지하철역_생성(StationFixture 지하철역_픽처) {
         return new Station(지하철역_픽처.이름());
+    }
+
+    public static Station 지하철역_생성(Long 아이디, StationFixture 지하철역_픽처) {
+        return new Station(아이디, 지하철역_픽처.이름());
     }
 
 }
