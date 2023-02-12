@@ -19,7 +19,7 @@ class LineTest {
     Line 지하철_3호선;
 
     @BeforeEach
-    void init() {
+    void setUp() {
         지하철_3호선 = 지하철_노선_및_구간_동시_생성(지하철_3호선_연신내_충무로);
     }
 
@@ -51,7 +51,7 @@ class LineTest {
         // when
         var 지하철역_목록 = 지하철_3호선.getStations();
 
-        assertAll("추가한 구간의 지하철 역에 대해 노선에 존재 여부 검증",
+        assertAll(
                 () -> assertThat(지하철역_목록).contains(추가한_구간.getUpStation()),
                 () -> assertThat(지하철역_목록).contains(추가한_구간.getDownStation())
         );

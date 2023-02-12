@@ -1,7 +1,5 @@
 package nextstep.subway.unit.fixture;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public enum StationFixture {
     연신내역,
@@ -9,10 +7,8 @@ public enum StationFixture {
     교대역,
     ;
 
-    public Map toMap() {
-        Map map = new HashMap();
-        map.put("name", this.name());
-        return map;
+    public String 이름() {
+        return this.name();
     }
 
 }
