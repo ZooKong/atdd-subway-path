@@ -1,5 +1,7 @@
 package nextstep.subway.domain;
 
+import nextstep.subway.applicaion.dto.LineUpdateRequest;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +77,27 @@ public class Line {
         return getSections().stream().flatMap(
                 section -> Stream.of(section.getUpStation(), section.getDownStation())
         ).distinct().collect(Collectors.toList());
+    }
+
+    public void update(LineUpdateRequest request) {
+
+        // TODO : 리팩토링 대상
+        if (request.getName() != null) {
+            line.setName(request.getName());
+        }
+        if (request.getColor() != null) {
+            line.setColor(request.getColor());
+        }
+    }
+
+    private void updateName(String name) {
+        if(name != null)
+
+
+    }
+
+    private void updateColor(String color) {
+
     }
 
 }

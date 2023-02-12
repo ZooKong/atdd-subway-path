@@ -2,7 +2,7 @@ package nextstep.subway.unit;
 
 import nextstep.subway.applicaion.LineService;
 import nextstep.subway.applicaion.StationService;
-import nextstep.subway.applicaion.dto.SectionRequest;
+import nextstep.subway.applicaion.dto.SectionAddRequest;
 import nextstep.subway.domain.LineRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ public class LineServiceMockTest {
                 Optional.of(지하철_3호선)
         );
 
-        SectionRequest 구간_저장_요청 = new SectionRequest(상행_연신내역.getId(), 하행_충무로역.getId(), 10);
+        SectionAddRequest 구간_저장_요청 = new SectionAddRequest(상행_연신내역.getId(), 하행_충무로역.getId(), 10);
 
         // when
         lineService.addSection(지하철_3호선.getId(), 구간_저장_요청);
